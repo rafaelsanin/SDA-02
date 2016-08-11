@@ -15,6 +15,12 @@ uint8_t MCP4141::set(uint8_t val){
   return position;
 }
 
+uint8_t MCP4141::setPercent(float val){
+    uint8_t cal_val = uint8_t(128*((100-val)/100.0));
+    set(cal_val);
+    return position;
+}
+
 uint8_t MCP4141::getPosition(){
   return position;
 }
