@@ -2,10 +2,10 @@
 
 AMODULATOR::AMODULATOR(uint8_t pwm, uint8_t cp):pot(cp){
   pwm_pin = pwm;
-  pinMode(pwm_pin, OUTPUT);
 }
 
 void AMODULATOR::init(){
+  pinMode(pwm_pin,OUTPUT);
   analogWrite(pwm_pin,128);
 }
 
