@@ -1,1 +1,40 @@
 #include <mcp4141.h>
+
+MCP4141::MCP4141(uint8_t pin){
+  SPI.begin();
+  chip_select = pin;
+  position = 0;
+  pinMode(chip_select, OUTPUT);
+}
+
+uint8_t MCP4141::set(uint8_t val){
+  digitalWrite(chip_select, LOW);
+  SPI.transfer16(val);
+  digitalWrite(chip_select, HIGH);
+  position = val;
+  return position;
+}
+
+uint8_t MCP4141::getPosition(){
+  return position;
+}
+
+uint8_t MCP4141::increment(){
+  if(position < 127){
+    digitalWrite(chip_select, LOW);
+    SPI.transfer(4);
+    digitalWrite(chip_select, HIGH);
+    position+=1;
+  }
+  return position;
+}
+
+uint8_t MCP4141::decrement(){
+  if(position > 0){
+    digitalWrite(chip_select, LOW);
+    SPI.transfer(8);
+    digitalWrite(chip_select, HIGH);
+    position-=1;
+  }
+  return position;
+}
