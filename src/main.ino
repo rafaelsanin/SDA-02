@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include <SPI.h>
 #include <mcp4141.h>
 #include <amodulator.h>
 #include <ArduinoJson.h>
